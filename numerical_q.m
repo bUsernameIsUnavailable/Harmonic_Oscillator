@@ -1,0 +1,9 @@
+function [x, v] = numerical_q(m, k, c, x0, v0, f, time)
+    [~, q] = ode45(@(t, q) [ ...
+        q(2); ...
+        1/m * (f(t) - k * q(1) - c * q(2)) ...
+    ], time, [x0, v0]);
+    
+    x = q(:, 1)'; % displacement
+    v = q(:, 2)'; % velocity
+end
